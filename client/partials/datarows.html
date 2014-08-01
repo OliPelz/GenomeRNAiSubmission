@@ -1,0 +1,44 @@
+<div ng-controller="DataRowCtrl">
+    <h1 class="page-header">Data Rows List</h1>
+    <table class="table">
+        <thead>
+        <tr>
+        <tr ng-repeat="p in phenotypes">
+        <th>{{}}</th>
+         
+            <th>additional information</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in phenotypes">
+            <td>{{p.activityR1Ch1}}</td>
+            <td>{{p.activityR1Ch2}}</td>
+            <td>{{p.activityR2Ch1}}</td>
+            <td>{{p.activityR2Ch2}}</td>
+            <td>{{p.bioModel}}</td>
+            <td>{{p.contributorExperiment}}</td>
+            <td>{{p.finalWellAnno}}</td>
+            <td>{{p.image}}</td>
+            <td>{{p.library}}</td>
+            <td>{{p.libraryProvider}}</td>
+            <td>{{p.normalizedR1}}</td>
+            <td>{{p.normalizedR2}}</td>
+            <td>{{p.phenotype}}</td>
+            <td>{{p.plate}}</td>
+            <td>{{p.position}}</td>
+            <td>{{p.primaryGeneID}}</td>
+            <td>{{p.rawR1Ch1}}</td>
+            <td>{{p.rawR1Ch2}}</td>
+            <td>{{p.rawR2Ch1}}</td>
+            <td>{{p.rawR2Ch2}}</td>
+            <td>{{p.reagentId}}</td>
+            <td>{{p.reagentName}}</td>
+            <td>{{p.score}}</td>
+            <td>{{p.well}}</td>
+            <td>{{p.wellAnno}}</td>
+            <td>{{p.addon_info}}</td>
+        </tr>
+        </tbody>
+    </table>
+    additional annotation fields
+</div>

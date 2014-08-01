@@ -1,0 +1,44 @@
+<div ng-controller="DataRowCtrl">
+    <h1 class="page-header">Data Rows List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>screenTitle</th>
+                <th>publicationTitle</th>
+                <th>authors</th>
+                <th>publicationYear</th>
+                <th>pubmedId</th>
+                <th>orgId</th>
+                <th>exp details</th>
+                <th>data rows</th>
+               <!-- <th>screenType</th>
+                <th>bioSource</th>
+                <th>assay</th>
+                <th>assayMethod</th>
+                <th>reagentType</th>
+                <th>scope</th>
+                <th>scoreType</th>
+                <th>scoreCutoff</th>
+                <th>notes</th>
+                <th>notesToTheCurator</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in experiments">
+                <td>screenTitle</td>
+                <td>publicationTitle</td>
+                <td>authors</td>
+                <td>publicationYear</td>
+                <td>pubmedId</td>
+                <td>orgId</td>
+                <!-- ng-show="user.id &&user.id==e.user_id" -->
+                <td><a ng-click="editBook($index)" ><i
+                            class="icon-pencil"></i>
+                    </a></td>
+                <td>
+                    <a ng-click="delBook($index)" ><i
+                            class="icon-remove-circle"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

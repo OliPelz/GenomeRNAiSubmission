@@ -1,0 +1,44 @@
+<div ng-controller="ExperimentCtrl">
+    <h1 class="page-header">Experiment List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>screenTitle</th>
+                <th>publicationTitle</th>
+                <th>authors</th>
+                <th>publicationYear</th>
+                <th>pubmedId</th>
+                <th>orgId</th>
+                <th>exp details</th>
+                <th>data rows</th>
+               <!-- <th>screenType</th>
+                <th>bioSource</th>
+                <th>assay</th>
+                <th>assayMethod</th>
+                <th>reagentType</th>
+                <th>scope</th>
+                <th>scoreType</th>
+                <th>scoreCutoff</th>
+                <th>notes</th>
+                <th>notesToTheCurator</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in experiments">
+                <td>{{e.screenTitle}}</td>
+                <td>{{ee.publicationTitle}}</td>
+                <td>{{e.authors}}</td>
+                <td>{{e.publicationYear}}</td>
+                <td>{{e.pubmedId}}</td>
+                <td>{{e.orgId}}</td>
+                <!-- ng-show="user.id &&user.id==e.user_id" -->
+                <td><a ng-click="showExpDetails($index)" ><i
+                            class="icon-pencil"></i>
+                    </a></td>
+                <td>
+                    <a ng-click="showDataRows($index)" ><i
+                            class="icon-remove-circle"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
