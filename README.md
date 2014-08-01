@@ -4,7 +4,7 @@ this is the official repositiory for the GenomeRNAi GenomeRNAi REST submission t
 
 Folder | Description
 ------------ | -------------
-client | a web client which reads our REST sources and displays results in webbrowser
+client | a web client which reads our REST sources and displays results in webbrowser (based on bootstrap and angularjs)
 server | grails REST web application
 test   | some test scripts etc.
  
