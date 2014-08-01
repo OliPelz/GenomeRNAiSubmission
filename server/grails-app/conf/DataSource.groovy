@@ -3,6 +3,8 @@ dataSource {
     driverClassName = "com.mysql.jdbc.Driver"
     username = "GenomeRNAiSub"
     password = "GenomeRNAiSub"
+    maxActive=30
+    initialSize=10
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -16,7 +18,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost/GenomeRNAiSubmission_DEV?useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://127.0.0.1/GenomeRNAiSubmission_DEV?useUnicode=yes&characterEncoding=UTF-8&autoReconnect=true"
         }
     }
     test {
