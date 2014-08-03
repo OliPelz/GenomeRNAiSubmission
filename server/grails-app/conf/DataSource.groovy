@@ -30,7 +30,7 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:mysql://127.0.0.1/GenomeRNAiSubmission_DEV?useUnicode=yes&characterEncoding=UTF-8&autoReconnect=true"
             properties {
                maxActive = -1
                minEvictableIdleTimeMillis=1800000
