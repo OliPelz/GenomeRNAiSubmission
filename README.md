@@ -34,7 +34,7 @@ e.g. JSON response is : { ......, "id":2, ....}, than set dataRow's contributorE
 
 e.g. insert some datarows:
 ```bash
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"cont": 2,"score":123, "plate": 1, "well": "A2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":123, "plate": 1, "well": "A2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
 $ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":234, "plate": 1, "well": "B2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
 $ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":345, "plate": 1, "well": "C2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
 $ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":456, "plate": 1, "well": "D2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
