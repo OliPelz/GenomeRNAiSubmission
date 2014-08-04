@@ -95,7 +95,7 @@ environments {
 
 // log4j configuration
 log4j = {
-    debug 'grails.app'
+    //debug 'grails.app'
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
