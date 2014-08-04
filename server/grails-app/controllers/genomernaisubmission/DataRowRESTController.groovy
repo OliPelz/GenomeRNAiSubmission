@@ -9,6 +9,5 @@ class DataRowRESTController extends RestfulController {
     DataRowRESTController() {
         super(DataRow)
     }
-
     static allowedMethods = [get: "GET", save: "POST", update: "PUT", delete: "DELETE"]
 }

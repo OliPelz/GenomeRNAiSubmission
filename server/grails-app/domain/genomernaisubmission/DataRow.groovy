@@ -54,5 +54,6 @@ class DataRow {
         library maxSize: 255, nullable: true
         libraryProvider maxSize: 255, nullable: true
         bioModel maxSize: 255, nullable: true
+	    contributorExperiment nullable: true
     }
 }
