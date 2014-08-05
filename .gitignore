@@ -1,3 +1,4 @@
+*.jar
 server.iml
 server-grailsPlugins.iml
 .DS_Store

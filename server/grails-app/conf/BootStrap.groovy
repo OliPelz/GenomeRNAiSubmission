@@ -1,36 +1,37 @@
-import genomernaisubmission.AdditionalColumn
-import genomernaisubmission.ContributorExperiment
-import genomernaisubmission.DataRow
+import de.dkfz.signaling.AdditionalColumn
+import de.dkfz.signaling.ContributorExperiment
+import de.dkfz.signaling.DataRow
 
 class BootStrap {
 
     def init = { servletContext ->
 
     ContributorExperiment contributorExperiment = new ContributorExperiment(
-            assay: "sfsdf",
-            assayMethod:"saddf" ,
-            authors:"sfsdf" ,
-            bioSource:"sfsdf" ,
-            notes: "sfsdf",
-            publicationTitle: "sfsdf",
+            assay: "Sindbis virus (SINV) GFP protein expression",
+            assayMethod:"Fluorescence" ,
+            authors:"Panda et al." ,
+            bioSource:"Cell line" ,
+            notes: "Primary screen performed in duplicate. Z-scores from replicate B and from secondary validation screen are shown in the comment field. Recombinant SINV (HRsp) expressing GFP was used for infection.",
+            publicationTitle: "Genome-wide RNAi Screen Identifies SEC61A and VCP as Conserved Regulators of Sindbis Virus Entry",
             publicationYear: 2014 ,
-            pubmedId: 2434235,
-            reagentType: "sfsdf",
-            scope: "sfsdf",
-            scoreCutoff: "sfsdf",
-            scoreType: "sfsdf",
-            screenTitle: "sfsdf",
-            screenType: "sfsdf",
-            stableId: "sfsdf",
-            orgId: 324,
-            notesToTheCurator: "Hello World"
-    ).addToDataRows(new DataRow(
-            plate: 235423,
-            position: 234,
-            well: "sfsdf",
-            score: 323.34,
-            wellAnno: "424",
-            finalWellAnno: "sfsdf",
+            pubmedId: 24332855,
+            reagentType: "dsRNA",
+            scope: "Genome-wide",
+            scoreCutoff: "< -2 OR > 2",
+            scoreType: "Z-score",
+            screenTitle: "Sindbis virus (SINV) infection",
+            screenType: "Cell-based",
+            stableId: "",
+            orgId: 2,
+            notesToTheCurator: ""
+    )
+    DataRow myRow =  new DataRow(
+            plate: 1,
+            position: 1,
+            well: "A1",
+            score: 2.12,
+            wellAnno: "sample",
+            finalWellAnno: "sample",
             rawR1Ch1: 213,
             rawR2Ch1: 4534,
             rawR1Ch2: 43242,
@@ -41,15 +42,78 @@ class BootStrap {
             activityR2Ch2: 42.5,
             normalizedR1: 6434.6,
             normalizedR2: 645323.66,
-            reagentName: "sfsdf",
-            image: "sfsdf",
-            primaryGeneID: "sfsdf",
-            phenotype: "sfsdfsfsdf",
-            reagentId: 34523523,
-            library: "sfsdf",
-            libraryProvider: "sfsdf",
-            bioModel: "sfsdf"
-    )).save(failOnError : true)
+            reagentName: "DSG-XX",
+            image: "",
+            primaryGeneID: "123",
+            phenotype: "deadly",
+            reagentId: 1234,
+            library: "Amxibon ",
+            libraryProvider: "The Company",
+            bioModel: "DL2"
+    )
+
+    myRow.addToAdditionalColumns("annotationType":"entrezGeneId" , "annotationValue": "blablub")
+    myRow.addToAdditionalColumns("annotationType":"ensemblGeneId" , "annotationValue": "ENG1234")
+    DataRow myRow2 = new DataRow(
+            plate: 1,
+            position: 3,
+            well: "C3",
+            score: -1.31,
+            wellAnno: "sample",
+            finalWellAnno: "sample",
+            rawR1Ch1: 213,
+            rawR2Ch1: 4534,
+            rawR1Ch2: 43242,
+            rawR2Ch2: 242,
+            activityR1Ch1: 34.5,
+            activityR2Ch1: 534.5,
+            activityR1Ch2: 342.7,
+            activityR2Ch2: 42.5,
+            normalizedR1: 6434.6,
+            normalizedR2: 645323.66,
+            reagentName: "DSG-YY",
+            image: "",
+            primaryGeneID: "345",
+            phenotype: "deadly",
+            reagentId: 2345,
+            library: "Amxibon ",
+            libraryProvider: "The Company",
+            bioModel: "DL2"
+    )
+    myRow2.addToAdditionalColumns("annotationType":"entrezGeneId" , "annotationValue": "horst123")
+    myRow2.addToAdditionalColumns("annotationType":"ensemblGeneId" , "annotationValue": "ENG1234")
+
+    DataRow myRow3 = new DataRow(
+            plate: 5,
+            position: 12,
+            well: "D6",
+            score: 1.311,
+            wellAnno: "sample",
+            finalWellAnno: "sample",
+            rawR1Ch1: 213,
+            rawR2Ch1: 4534,
+            rawR1Ch2: 43242,
+            rawR2Ch2: 242,
+            activityR1Ch1: 34.5,
+            activityR2Ch1: 534.5,
+            activityR1Ch2: 342.7,
+            activityR2Ch2: 42.5,
+            normalizedR1: 6434.6,
+            normalizedR2: 645323.66,
+            reagentName: "DSG-XX",
+            image: "",
+            primaryGeneID: "123",
+            phenotype: "deadly",
+            reagentId: 1234,
+            library: "Amxibon ",
+            libraryProvider: "The Company",
+            bioModel: "DL2"
+    )
+    contributorExperiment.addToDataRows(myRow)
+    contributorExperiment.addToDataRows(myRow2)
+    contributorExperiment.addToDataRows(myRow3)
+
+    contributorExperiment.save(failOnError : true)
 
 
     }
