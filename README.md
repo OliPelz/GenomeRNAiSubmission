@@ -23,8 +23,10 @@ Just to quickly test the service to import data you can use curl (http://blogs.p
 
 to see whats in the ContributorExperiment table:
 ```bash
-$ curl -i -H "Content-Type:application/json" -X GET  http://genomernai-test.dkfz.de/GenomeRNAiSubmission/contributorExperiment/rest
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"publicationTitle": "my first screen","authors": "Oliver Pelz", orgId : 1}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/contributorExperiment/rest
+$ curl -i -H "Content-Type:application/json" -X GET  http://localhost:8080/GenomeRNAiSubmission/contributorExperiment/rest
+```
+to add a new contributor experiment 
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"publicationTitle": "my first screen","authors": "Oliver Pelz", orgId : 1}' http://localhost:8080/GenomeRNAiSubmission/contributorExperiment/rest
 ```
 
 in the JSON response from the server there is a property id, take it for inserting belonging dataRows and connect them to the experiment using the property
@@ -34,9 +36,9 @@ e.g. JSON response is : { ......, "id":2, ....}, than set dataRow's contributorE
 
 e.g. insert some datarows:
 ```bash
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":123, "plate": 1, "well": "A2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":234, "plate": 1, "well": "B2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":345, "plate": 1, "well": "C2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":456, "plate": 1, "well": "D2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
-$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":567, "plate": 1, "well": "E2"}' http://genomernai-test.dkfz.de/GenomeRNAiSubmission/dataRow/rest
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":123, "plate": 1, "well": "A2"}' http://localhost:8080/GenomeRNAiSubmission/dataRow/rest
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":234, "plate": 1, "well": "B2"}' http://localhost:8080/GenomeRNAiSubmission/dataRow/rest
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":345, "plate": 1, "well": "C2"}' http://localhost:8080/GenomeRNAiSubmission/dataRow/rest
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":456, "plate": 1, "well": "D2"}' http://localhost:8080/GenomeRNAiSubmission/dataRow/rest
+$ curl -i -H "Content-Type:application/json" -X POST -d '{"contExpId": 2,"score":567, "plate": 1, "well": "E2"}' http://localhost:8080/GenomeRNAiSubmission/dataRow/rest
 ```
