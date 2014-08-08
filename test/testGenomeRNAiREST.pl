@@ -2,14 +2,13 @@
 
 use strict;
 use warnings;
-#use JSON;
-#use LWP;
+use JSON;
+use LWP;
 
-my $browser;
-my $json;
-#my $browser = LWP::UserAgent->new;
-#my $json = JSON->new;
+my $json = JSON->new;
 
+my $DOMAIN = "localhost:8080";
+my $VALID_PHENO_COLUMNS = [];
 my %data_to_json;
 my $section;
 my @lineNum = (0, 0, 0);  #stores current line number of section
@@ -35,7 +34,7 @@ while (my $line = <DATA>) {
        }
        else {
             for(my $i = 0; $i < $#vals; $i++) {
-                push @{$data_to_json{"phenotype data"}{$lineNum[$section]}},($colToHsh[$i]=>$vals[$i]); 
+                $data_to_json{"phenotype data"}{$lineNum[$section]}{$colToHsh[$i]} = $vals[$i]; 
 	    }
        }  
    }
@@ -43,19 +42,33 @@ while (my $line = <DATA>) {
     # todo  
    }
 }
-my $hello;
-#my $encoded = $json->encode(\%data_to_json);
-
 # attempting to store screen data in the experiment
-#my $uri = "http://localhost:8080/GenomeRNAiSubmission/contributorExperiment/rest";
-#my $req = HTTP::Request->new( 'POST', $uri );
-#$req->content_type('application/json');
-#$req->content($json->encode($data_to_json{"screen data"}));
-#my $ua = LWP::UserAgent->new; # You might want some options here
-#my $res = $ua->request($req);
-#my $contrib_obj = $json->decode($res->decoded_content);
+my $contrib_exp_uri = "http://$DOMAIN/GenomeRNAiSubmission/contributorExperiment/rest";
+my $req = HTTP::Request->new( 'POST', $contrib_exp_uri );
+$req->content_type('application/json');
+$req->content($json->encode($data_to_json{"screen data"}));
+my $ua = LWP::UserAgent->new; 
+my $res = $ua->request($req);
+my $contrib_obj = $json->decode($res->decoded_content);
 ##retrive the database id from the experiment we just imported
-#my $db_id = $contrib_obj->{"id"};
+my $contrib_db_id = $contrib_obj->{"id"} || die "the POST response for contributorExperiment did not return a valid id of the saved obj";
+print STDERR "inserted contributor experiment with id ".$contrib_db_id."\n";
+
+#now insert some dataRows using our contributor id we just saved
+my $datarow_uri = "http://$DOMAIN/GenomeRNAiSubmission/dataRow/rest";
+$req = HTTP::Request->new( 'POST', $datarow_uri );
+foreach my $line_num (sort keys %{$data_to_json{"phenotype data"}}) {
+   my $hash_ref = $data_to_json{"phenotype data"}{$line_num};
+   $hash_ref->{"contExpId"} = $contrib_db_id;   # add the contributor experiment id to every dataRow
+   $req->content($json->encode($data_to_json{"phenotype data"}));
+   $ua = LWP::UserAgent->new; 
+   $res = $ua->request($req);
+   my $dataRow_id = $json->decode($res->decoded_content)->{"id"} || die "the POST response for dataRow did not retun a valid id of the saved obj";
+   print STDERR "inserted data Row with id ".$dataRow_id."\n";
+}
+#now insert some additional columns
+
+
 
 
 
@@ -83,8 +96,6 @@ scoreType	Z-score
 scoreCutoff	< -2 OR > 2
 notes	Primary screen performed in duplicate. Z-scores from replicate B and from secondary validation screen are shown in the comment field. Recombinant SINV (HRsp) expressing GFP was used for infection. 
 notesToTheCurator	
-	 							
-Notes to the Curators	
 [sheet 2]
 activityR1Ch1	activityR1Ch2	activityR2Ch1	activityR2Ch2	bioModel	contributorExperiment	finalWellAnno	image	library	libraryProvider	normalizedR1	normalizedR2	phenotype	plate	position	primaryGeneID	rawR1Ch1	rawR1Ch2	rawR2Ch1	rawR2Ch2	reagentId	reagentName	score	well	wellAnno	myGeneId2	myGenesymbols123
 1.13	0.955	0.164	0.121	DL1	1	pos		Dharmakkan		-3.385	-3.444	healthy	1	26	NA	2020	1500	1740	1490	1	DMK1221	1	B02	pos	NA	blablub
